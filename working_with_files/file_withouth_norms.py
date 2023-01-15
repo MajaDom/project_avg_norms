@@ -237,6 +237,40 @@ class FileWithoutNorms(InputFile):
                     print("Wrong parameter, try again.")
             except ValueError:
                 print("Wrong parameter, try again.")
+    @staticmethod
+    def group_data_for_visualisation_levl0(data: pd.DataFrame):
+        column = "Уровень 0"
+        grouped = FileWithoutNorms.group_and_sum_data_level0(data)
+        show_lab_hours(grouped, column)
+        show_mach_hours(grouped, column)
+
+    @staticmethod
+    def group_data_for_visualisation_levl1(data: pd.DataFrame):
+        column = "Уровень 1"
+        grouped = FileWithoutNorms.group_and_sum_data_level1(data)
+        show_lab_hours(grouped, column)
+        show_mach_hours(grouped, column)
+
+    @staticmethod
+    def group_data_for_visualisation_levl2(data: pd.DataFrame):
+        column = "Уровень 2"
+        grouped = FileWithoutNorms.group_and_sum_data_level2(data)
+        show_lab_hours(grouped, column)
+        show_mach_hours(grouped, column)
+
+    @staticmethod
+    def group_data_for_visualisation_levl3(data: pd.DataFrame):
+        column = "Уровень 3"
+        grouped = FileWithoutNorms.group_and_sum_data_level3(data)
+        show_lab_hours(grouped, column)
+        show_mach_hours(grouped, column)
+
+    @staticmethod
+    def group_data_for_visualisation_levl4(data: pd.DataFrame):
+        column = "Уровень 4"
+        grouped = FileWithoutNorms.group_and_sum_data_level4(data)
+        show_lab_hours(grouped, column)
+        show_mach_hours(grouped, column)
 
     @staticmethod
     def allow_user_to_choose_or_exit():
@@ -248,30 +282,15 @@ class FileWithoutNorms(InputFile):
             while True:
                 input_user = FileWithoutNorms.show_options_if_norms_are_adopted()
                 if input_user == 0:
-                    column = "Уровень 0"
-                    grouped = InputFile.group_and_sum_data_level0(latest_data)
-                    show_lab_hours(grouped, column)
-                    show_mach_hours(grouped, column)
+                    FileWithoutNorms.group_data_for_visualisation_levl0(latest_data)
                 elif input_user == 1:
-                    column = "Уровень 1"
-                    grouped = InputFile.group_and_sum_data_level1(latest_data)
-                    show_lab_hours(grouped, column)
-                    show_mach_hours(grouped, column)
+                    FileWithoutNorms.group_data_for_visualisation_levl1(latest_data)
                 elif input_user == 2:
-                    column = "Уровень 2"
-                    grouped = InputFile.group_and_sum_data_level2(latest_data)
-                    show_lab_hours(grouped, column)
-                    show_mach_hours(grouped, column)
+                    FileWithoutNorms.group_data_for_visualisation_levl2(latest_data)
                 elif input_user == 3:
-                    column = "Уровень 3"
-                    grouped = InputFile.group_and_sum_data_level3(latest_data)
-                    show_lab_hours(grouped, column)
-                    show_mach_hours(grouped, column)
+                    FileWithoutNorms.group_data_for_visualisation_levl3(latest_data)
                 elif input_user == 4:
-                    column = "Уровень 4"
-                    grouped = InputFile.group_and_sum_data_level4(latest_data)
-                    show_lab_hours(grouped, column)
-                    show_mach_hours(grouped, column)
+                    FileWithoutNorms.group_data_for_visualisation_levl4(latest_data)
                 elif input_user == 5:
                     print("The program is closed.")
                     break
