@@ -96,20 +96,8 @@ class FileWithNorms(InputFile):
         if text == "console":
             for code in missing_norms:
                 print(f"Level 4: {code.name_level4} Measure: {code.unit_measure_l4_1}")
-                is_end = False
-                while is_end is not True:
-                    try:
-                        code.avg_labor_1 = abs(float(input("Input average norm for labor: ")))
-                        is_end = True
-                    except ValueError:
-                        print("Wrong input. Value needs to be a number.")
-                is_end = False
-                while is_end is not True:
-                    try:
-                        code.avg_mach_1 = abs(float(input("Input average norm for machines: ")))
-                        is_end = True
-                    except ValueError:
-                        print("Wrong input. Value needs to be a number.")
+                code.avg_labor_1 = self.test_user_input_float_hours("labor")
+                code.avg_mach_1 = self.test_user_input_float_hours("machine")
                 self.list_of_norms.append(code)
             return self.list_of_norms
 

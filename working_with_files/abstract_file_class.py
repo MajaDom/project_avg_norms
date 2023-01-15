@@ -27,8 +27,8 @@ class InputFile(ABC):
 
     @abstractmethod
     def connect_to_a_file_and_read_content(self):
-        """An example of overload. Method that every instance needs to have in order to read files properly.
-        Files with norms and without norms do not contain teh same columns, so method need to be overwritten."""
+        """An example of overload. Method that every child class needs to have in order to read files properly.
+        Files with norms and without norms do not contain the same columns, so method needs to be overwritten."""
 
         pass
 
@@ -109,3 +109,16 @@ class InputFile(ABC):
             print("File you are trying to write in is already open. Close the file and try again.")
         except KeyError:
             print("Column Уровень 4, could not be found.")
+
+    @staticmethod
+    def test_user_input_float_hours(text: str) -> float:
+        """Method that checks if user input is correct. If it is it returns a float. """
+        is_end = False
+        while is_end is not True:
+            try:
+                avg_labor_1 = abs(float(input(f"Input average norm for {text}: ")))
+                is_end = True
+                return avg_labor_1
+            except ValueError:
+                print("Wrong input. Value needs to be a number.")
+

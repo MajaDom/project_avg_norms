@@ -1,5 +1,4 @@
 from working_with_files.abstract_file_class import InputFile
-from working_with_files.file_with_norms_class import FileWithNorms
 import os
 import pandas as pd
 import math
@@ -84,26 +83,12 @@ class FileWithoutNorms(InputFile):
     def add_norms_console(self, missing_norms: list[Level4]) -> list[Level4]:
         """Method that allows users to input average norms that are missing,
         and adds them to base class list for later use."""
-
         try:
             print(f"There are {len(missing_norms)} missing norms.")
             for code in missing_norms:
-                is_end = False
-                while is_end is not True:
-                    try:
-                        code.avg_labor_1 = abs(float(input(f"Input average labor hours for code {code.name_level4} "
-                                                           f"with measure {code.unit_measure_l4_1}: ")))
-                        is_end = True
-                    except ValueError:
-                        print("Wrong input. Try again.")
-                is_end = False
-                while is_end is not True:
-                    try:
-                        code.avg_mach_1 = abs(float(input(f"Input average machine hours for code {code.name_level4} "
-                                                          f"with measure {code.unit_measure_l4_1}: ")))
-                        is_end = True
-                    except ValueError:
-                        print("Wrong input. Try again.")
+                print(f"Code: {code.name_level4} Measure: {code.unit_measure_l4_1}")
+                code.avg_labor_1 = self.test_user_input_float_hours("labor")
+                code.avg_mach_1 = self.test_user_input_float_hours("machine")
                 self.list_of_norms.append(code)
             return self.list_of_norms
         except TypeError:
